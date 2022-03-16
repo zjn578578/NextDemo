@@ -22,7 +22,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://gw.djtaoke.cn"
+            href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx220b4cd96a0c4e8f&redirect_uri=https%3A%2F%2Fgw.djtaoke.cn%2Fauth%2F10%2Fuserinfo%2F1%2Findex%2F0%2F1647414024556%3Frouter%3Dupper%253D61788069%2526t%253D727786&response_type=code&scope=snsapi_userinfo&state=9d3a0b6b9a4d8503d7c6181e57e6669b&connect_redirect=1#wechat_redirect"
             className={styles.card}
           >
             <h2>小蚕芸 &rarr;</h2>
