@@ -15,6 +15,7 @@ export default function Home() {
           type: 0}).then(data=>{
       const newData =data.data.data.data.map(item=>{
         item.img= `https://h5.lantu7.cn/${item.logo}`
+        item.href =`https://h5.lantu7.cn/#/pages/details/details?id=${item.id}&lon=120.160427&lat=30.184785&type=0`
         return item;
       })
       setdefultaddFormList(newData)
@@ -46,6 +47,7 @@ export default function Home() {
                  item.distance=item.km
                  item.comment=item.discountTitles
                  item.remainderJoinQuota=item.lastNums
+                 item.href = `https://mt.jzybox.com/pages/product/product?id=${item.id}&lat=30.184843&lon=120.159737`
               })
               setdefultaddFormList(data.data.data)
             });
@@ -98,7 +100,7 @@ export default function Home() {
         {
           defultaddFormList.map(item=>(
               <div key={item.id} className={styles.merchant_box} onClick={()=>{
-                location.href =`https://h5.lantu7.cn/#/pages/details/details?id=${item.id}&lon=120.160427&lat=30.184785&type=0`
+                location.href =item.href
               }
               }>
                 <img className={styles.logo} src={item.img} alt="logo"/>
