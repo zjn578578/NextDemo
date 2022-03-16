@@ -35,7 +35,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.grid}>
-          <a href="#" className={styles.card}>
+          <a href="#" className={styles.card} onClick={()=>{
+            request('https://h5.lantu7.cn/tbms/c/activities/page')
+          }}>
             <h2>团小淘</h2>
           </a>
 
