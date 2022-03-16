@@ -60,7 +60,7 @@ export default function Home() {
               href="https://vip.cchll.cn"
               className={styles.card}
           >
-            <h2>吃撑黄绿蓝 &rarr;</h2>
+            <h2>吃撑黄绿&rarr;</h2>
           </a>
 
           <a
