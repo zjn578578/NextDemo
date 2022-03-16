@@ -39,7 +39,7 @@ export default function Home() {
               href="https://www.nbjiazhi.top"
               className={styles.card}
           >
-            <h2>饱饱生活圈 &rarr;</h2>
+            <h2>饱饱生活&rarr;</h2>
           </a>
 
           <a
