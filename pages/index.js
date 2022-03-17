@@ -238,7 +238,7 @@ export default function Home() {
               href="https://m.bwyc168.com"
               className={styles.card}
           >
-            <h2>霸王用餐CQ</h2>
+            <h2>霸王用餐</h2>
           </a>
         </div>
         {
