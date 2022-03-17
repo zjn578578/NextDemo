@@ -61,6 +61,28 @@
 .merchant_box .content{
   flex: 1 1;
 }
+.merchant_box .sort{
+  display: flex;
+}
+.merchant_box .meituan{
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 9px;
+  background-color: #fbc500;
+  color: #282828;
+  border: 1px solid #fbc500;
+}
+.merchant_box .eleme{
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 9px;
+  background-color: #3dbcfd;
+  color: #fff;
+  border: 1px solid #3dbcfd;
+}
+.merchant_box .activity{
+  padding: 2px 6px;
+}
 @media (max-width: 600px) {
   .grid {
     /*width: 100%;*/
