@@ -300,7 +300,7 @@ export default function Home() {
           )):''
         }
           {iframeVisible?
-              <div style={{height:'80vh'}}>
+              <div style={{height:'75vh'}}>
                 <iframe src={src} frameBorder="0" height="100%" width="100%"></iframe>
               </div> :''
           }
