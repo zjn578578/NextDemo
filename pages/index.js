@@ -10,20 +10,19 @@ export default function Home() {
   const [long, setLong] = useState(120.159737)
 
   useEffect(() => {
-    request('https://h5.lantu7.cn/tbms/c/activities/page')
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(function(res){
-    //     setLat(res.coords.latitude)
-    //     setLong(res.coords.longitude)
-    //     request('https://h5.lantu7.cn/tbms/c/activities/page',res.coords.latitude,res.coords.longitude)
-    //   });
-    // } else {
-    //   alert('该浏览器不支持定位');
-    // }
-
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(res){
+        setLat(res.coords.latitude)
+        setLong(res.coords.longitude)
+        request('https://h5.lantu7.cn/tbms/c/activities/page',res.coords.latitude,res.coords.longitude)
+      });
+    } else {
+      alert('该浏览器不支持定位');
+    }
+    request('https://h5.lantu7.cn/tbms/c/activities/page',lat,long)
   }, []);
 
-  const request= (url) =>{
+  const request= (url,lat,long) =>{
     axios.post(url,
         {latitude: lat,
           longitude: long,
@@ -57,7 +56,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.grid}>
           <a href="#" className={styles.card} onClick={()=>{
-            request('https://h5.lantu7.cn/tbms/c/activities/page')
+            request('https://h5.lantu7.cn/tbms/c/activities/page',lat,long)
           }}>
             <h2>团小淘</h2>
           </a>
