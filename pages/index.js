@@ -5,9 +5,21 @@ import axios from "axios";
 
 export default function Home() {
   const [defultaddFormList, setdefultaddFormList] = useState([])
+  const [src, setSrc] = useState('')
   const [lat, setLat] = useState(30.184843)
   const [long, setLong] = useState(120.159737)
-
+  const [iframeVisible, setIframeVisible] = useState(false)
+  const href =
+      [ "https://h5.lantu7.cn",
+        "https://mt.jzybox.com",
+        "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx220b4cd96a0c4e8f&redirect_uri=https%3A%2F%2Fgw.djtaoke.cn%2Fauth%2F10%2Fuserinfo%2F1%2Findex%2F0%2F1647414024556%3Frouter%3Dupper%253D61788069%2526t%253D727786&response_type=code&scope=snsapi_userinfo&state=9d3a0b6b9a4d8503d7c6181e57e6669b&connect_redirect=1#wechat_redirect",
+        "https://bwc.jiulingtech.tech",
+        "https://www.nbjiazhi.top",
+        "https://www.xxh-life.com",
+        "https://h5.bchibhe.com",
+        "https://vip.cchll.cn",
+        "https://m.bwyc168.com"
+      ]
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(res){
@@ -36,6 +48,7 @@ export default function Home() {
         return item;
       })
       setdefultaddFormList(newData)
+      setSrc(href[0])
     });
   }
 
@@ -66,6 +79,7 @@ export default function Home() {
                  item.platform = item.outPlat === 'mt'?1:0
               })
               setdefultaddFormList(data.data.data)
+              setSrc(href[1])
             });
           }}>
             <h2>撸餐</h2>
@@ -107,6 +121,7 @@ export default function Home() {
                   }
                 })
                 setdefultaddFormList(data.data.promotion_list)
+                setSrc(href[2])
               });
             }}
           >
@@ -131,6 +146,7 @@ export default function Home() {
                   item.taskRuleReturn = item.subtract
                 });
                 setdefultaddFormList(data.data.data.list)
+                setSrc(href[3])
               })
             }}
           >
@@ -160,6 +176,7 @@ export default function Home() {
                     item.taskRuleReturn = item.task_platform[0].rebate_money
                   });
                    setdefultaddFormList(data.data.data.list)
+                   setSrc(href[4])
                 })
               }}
           >
@@ -170,7 +187,6 @@ export default function Home() {
               className={styles.card}
               onClick={()=>{
                 axios.get(`https://xxh-web-api.xiaoxiao.mmoyun.cn/task?lat=${lat}&lng=${long}&offset=1&length=10&status=late`).then(data=>{
-                  console.log(data.data.data.task)
                   data.data.data.task.map(item=>{
                     item.distance=item.distance.slice(0,4)
                     item.businessName=item.name
@@ -181,6 +197,7 @@ export default function Home() {
                     item.comment = item.rule
                   });
                   setdefultaddFormList(data.data.data.task)
+                  setSrc(href[5])
                 })
               }}
           >
@@ -203,6 +220,7 @@ export default function Home() {
                     item.taskRuleReturn = item.normalDiscounts
                   });
                   setdefultaddFormList(data.data.data.list)
+                  setSrc(href[6])
                 })
               }}
           >
@@ -232,49 +250,81 @@ export default function Home() {
                     item.distance = item.distance.substr(0,item.distance.length-2);
                   });
                   setdefultaddFormList(data.data.data.dataList)
+                  setSrc(href[7])
                 })
               }}
           >
             <h2>吃撑黄绿</h2>
           </a>
           <a
-              href="https://m.bwyc168.com"
+              href="#"
               className={styles.card}
+              onClick={()=>{
+                setSrc(href[8])
+              }}
           >
             <h2>霸王用餐</h2>
           </a>
         </div>
+        <div style={{marginBottom:50,marginTop:103}}>
         {
+          iframeVisible === false?
           defultaddFormList.map((item,index)=>(
               item.remainderJoinQuota === 0 || item.remainderJoinQuota ==='0' ?'':
-              <div key={index} className={styles.merchant_box} onClick={()=>{
-                location.href =item.href
-              }
-              }>
-                <img className={styles.logo} src={item.img} alt="logo"/>
-                <div className={styles.content}>
-                  <div className={styles.businessName}>{item.businessName}</div>
-                  <div className={styles.sort}>
-                    {item.platform===1?
-                        <div className={styles.meituan}>美团外卖</div>
-                        :
-                        <div className={styles.eleme}>饿了么</div>
+                    <div key={index} className={styles.merchant_box} onClick={()=>{
+                      location.href =item.href
                     }
-                    {item.taskRuleUp?
-                      <div className={styles.activity}>
-                        满{item.taskRuleUp}返{item.taskRuleReturn}
-                      </div>:''
-                    }
+                    }>
+                      <img className={styles.logo} src={item.img} alt="logo"/>
+                      <div className={styles.content}>
+                        <div className={styles.businessName}>{item.businessName}</div>
+                        <div className={styles.sort}>
+                          {item.platform===1?
+                              <div className={styles.meituan}>美团外卖</div>
+                              :
+                              <div className={styles.eleme}>饿了么</div>
+                          }
+                          {item.taskRuleUp?
+                              <div className={styles.activity}>
+                                满{item.taskRuleUp}返{item.taskRuleReturn}
+                              </div>:''
+                          }
+                        </div>
+                        <div style={{fontSize:14}}>{item.comment}</div>
+                        <div style={{display:'flex'}}>
+                          <div className={styles.remainderJoinQuota}>剩余名额：{item.remainderJoinQuota}</div>
+                          <div className={styles.distance}>{item.distance}km</div>
+                        </div>
+                      </div>
                   </div>
-                  <div style={{fontSize:14}}>{item.comment}</div>
-                  <div style={{display:'flex'}}>
-                    <div className={styles.remainderJoinQuota}>剩余名额：{item.remainderJoinQuota}</div>
-                    <div className={styles.distance}>{item.distance}km</div>
-                  </div>
-                </div>
-              </div>
-          ))
+          )):''
         }
+          {iframeVisible?
+              <div style={{height:'80vh'}}>
+                <iframe src={src} frameBorder="0" height="100%" width="100%"></iframe>
+              </div> :''
+          }
+        </div>
+          <ul className={styles.tabbar}>
+            <li>
+              <a href="#"
+              onClick={()=>{
+                setIframeVisible(false)
+              }}
+              >
+                <p>聚合点餐</p>
+              </a>
+            </li>
+            <li>
+              <a href="#"
+              onClick={()=>{
+                setIframeVisible(true)
+              }}
+              >
+                <p>平台首页</p>
+              </a>
+            </li>
+          </ul>
       </main>
     </div>
   )
