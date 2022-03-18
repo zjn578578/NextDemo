@@ -321,7 +321,16 @@ export default function Home() {
                 setIframeVisible(true)
               }}
               >
-                <p>平台首页</p>
+                <p>聚合首页</p>
+              </a>
+            </li>
+            <li>
+              <a href="#"
+                 onClick={()=>{
+                   location.href = src
+                 }}
+              >
+                <p>直接跳转</p>
               </a>
             </li>
           </ul>
