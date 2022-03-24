@@ -91,7 +91,7 @@ export default function Home() {
               axios.post('https://gw.djtaoke.cn/rpc',{
                 "latitude": lat,
                 "longitude": long,
-                "promotion_sort": 1,
+                "promotion_sort": 0,
                 "store_type": 0,
                 "offset": 0,
                 "number": 40,
@@ -107,15 +107,16 @@ export default function Home() {
                   item.img=item.store.icon
                   item.businessName=item.store.name
                   item.comment=item.remark
-                  item.remainderJoinQuota=item.meituan_left_number
                   item.distance = (item.distance/1000).toFixed(2)
                   item.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx220b4cd96a0c4e8f&redirect_uri=https%3A%2F%2Fgw.djtaoke.cn%2Fauth%2F10%2Fuserinfo%2F1%2Findex%2F0%2F1647414024556%3Frouter%3Dupper%253D61788069%2526t%253D727786&response_type=code&scope=snsapi_userinfo&state=9d3a0b6b9a4d8503d7c6181e57e6669b&connect_redirect=1#wechat_redirect`
                   if(item.eleme_status === 1){
                     item.platform = 0
+                    item.remainderJoinQuota=item.eleme_left_number
                     item.taskRuleUp = item.eleme_order_money/100
                     item.taskRuleReturn =item.eleme_user_rebate/100
                   }else if(item.meituan_status === 1){
                     item.platform = 1
+                    item.remainderJoinQuota=item.meituan_left_number
                     item.taskRuleUp = item.meituan_order_money/100
                     item.taskRuleReturn = item.meituan_user_rebate/100
                   }
