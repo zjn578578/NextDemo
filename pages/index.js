@@ -94,7 +94,7 @@ export default function Home() {
                 "promotion_sort": 1,
                 "store_type": 0,
                 "offset": 0,
-                "number": 10,
+                "number": 40,
                 "silk_id": 0,
                 "promotion_filter": 0,
                 "promotion_category": 0,
