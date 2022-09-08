@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import React, {useState,useEffect } from 'react';
 import axios from "axios";
 
+
 export default function Home() {
   const [defultaddFormList, setdefultaddFormList] = useState([])
   const [src, setSrc] = useState('')
@@ -28,7 +29,7 @@ export default function Home() {
         request('https://h5.lantu7.cn/tbms/c/activities/page',res.coords.latitude,res.coords.longitude)
       });
     } else {
-      alert('该浏览器不支持定位');
+      alert('该浏览器不支持定位1');
     }
     request('https://h5.lantu7.cn/tbms/c/activities/page',lat,long)
   }, []);
@@ -38,7 +39,7 @@ export default function Home() {
         {latitude: lat,
           longitude: long,
           pageIndex: 1,
-          pageSize: 20,
+          pageSize: 40,
           type: 0}).then(data=>{
       const newData =data.data.data.data.map(item=>{
         item.img= `https://h5.lantu7.cn/${item.logo}`
@@ -307,8 +308,8 @@ export default function Home() {
           }
         </div>
           <ul className={styles.tabbar}>
-            <li>
-              <a href="#"
+            <li >
+              <a class='active' href="#"
               onClick={()=>{
                 setIframeVisible(false)
               }}

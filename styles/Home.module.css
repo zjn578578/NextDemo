@@ -110,7 +110,7 @@
   font-weight: 600;
 }
 .remainderJoinQuota{
-  flex:1 1 auto
+  flex:auto;
 }
 .distance{
   font-size: 15px;
@@ -125,16 +125,22 @@
   padding-inline-start: 0px;
   list-style: none;
   display: flex;
-  /*align-items: center;*/
-  background: #FFFFFF;
-  /*box-shadow: 0 0 2px rgb(0 0 0 / 10%);*/
-  /*max-width: 750px;*/
-  margin: 0 auto;
-  /*z-index: 9;*/
+  padding: 0;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 16px;
+  margin: 14px 14px;
+  display: flex;
+  background:#fafafa;
+  overflow:hidden;
 }
 .tabbar li {
-  flex: 1;
-  text-align: center;
+  flex: auto;
+}
+
+li a.active{
+  background-color:#1890ff;
+  color:#fff;
 }
 @media (max-width: 600px) {
   .grid {
